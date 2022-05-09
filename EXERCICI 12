@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class e12_HidalgoS {
+
+    public static final int CODI_INI = 0;
+    public static final int CODI_FINAL = 1000;
+
+    public static void main(String[] args) {
+
+        int quantes_Persones = 0;
+        int[] codi;
+        boolean dada_correcte;
+        Scanner scan = new Scanner(System.in);
+
+        int codiAux;
+
+        System.out.print("Numero de usuaris que voldries introduir\n");
+        //evalua
+        dada_correcte = scan.hasNextInt();
+        if (dada_correcte) {
+            quantes_Persones = scan.nextInt();
+            scan.nextLine();
+        }
+        codi = new int[quantes_Persones];//reserva 
+
+        for (int i = 0; i < quantes_Persones; i++) {
+            System.out.print("Introduccio de codis");//introduccio codis
+            codi[i] = scan.nextInt();
+            if (codi[i] < CODI_FINAL) {
+                dada_correcte = true;
+            } else {
+                dada_correcte = false;
+                System.out.println("No passis de mil");
+
+                scan.nextInt();
+            }
+        }
+
+        System.out.println("\nUn ordre de codis");
+        for (int i = 0; i < quantes_Persones; i++) {
+            System.out.println(codi[i]);
+        }
+
+        //ordre e intercanvis
+        for (int i = 0; i < codi.length - 1; i++) {
+            for (int j = i + 1; j < codi.length; j++) {
+                if (codi[i] > codi[j]) {
+
+                    codiAux = codi[i];
+                    codi[i] = codi[j];
+                    codi[j] = codiAux;
+                }
+            }
+        }
+        //printeo final
+        System.out.println("\nL'altre ordre");
+        for (int i = 0; i < quantes_Persones; i++) {
+            System.out.println(codi[i]);
+        }
+
+    }
+}
